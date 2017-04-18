@@ -12,6 +12,6 @@ class CommandsExecutor
 
   def execute(parser)
     cmd_object = @commands[parser.parse] || @null_cmd
-    cmd_object.execute(parser.args)
+    cmd_object.execute
   end
 end

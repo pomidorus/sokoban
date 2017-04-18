@@ -7,7 +7,7 @@ class ViewMap < Command
     @reader = reader
   end
 
-  def execute(args)
+  def execute
     @reader.read
     @map_viewer.view(@reader.map)
   end

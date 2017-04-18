@@ -14,6 +14,8 @@ class CommandsParser
         SokobanStrings::VIEW_MAP_CMD
       when /#{SokobanStrings::MAN_POSITION_CMD}/
         SokobanStrings::MAN_POSITION_CMD
+      when /#{SokobanStrings::MAN_UP_CMD}/
+        SokobanStrings::MAN_UP_CMD
       else
         SokobanStrings::NOT_FOUND_MSG
     end

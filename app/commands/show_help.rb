@@ -8,7 +8,7 @@ class ShowHelp < Command
     @cmds = {}
   end
 
-  def execute(args)
+  def execute
     @cmds.each do |k, v|
       puts "`#{k}` - #{v.description}"
     end

@@ -6,11 +6,13 @@ require './app/services/map_viewer'
 require './app/services/sokoban_reader'
 require './app/services/map_parser'
 require './app/services/man_position_viewer'
+require './app/services/man_position_mover'
 
 require './app/commands/show_help'
 require './app/commands/view_map'
 require './app/commands/null_command'
 require './app/commands/view_man_position'
+require './app/commands/man_up'
 
 require './app/models/sokoban_map'
 require './app/models/open_floor'
