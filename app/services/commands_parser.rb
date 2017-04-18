@@ -8,12 +8,12 @@ class CommandsParser
 
   def parse
     case @cmd
-      when /help/
+      when /#{SokobanStrings::HELP_CMD}/
         SokobanStrings::HELP_CMD
-      when /view map/
+      when /#{SokobanStrings::VIEW_MAP_CMD}/
         SokobanStrings::VIEW_MAP_CMD
       else
-        'not found'
+        SokobanStrings::NOT_FOUND_MSG
     end
   end
 end

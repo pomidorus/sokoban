@@ -1,12 +1,14 @@
 require_relative 'command'
 
 class ViewMap < Command
-  def initialize(map_viewer)
+  def initialize(map_viewer, reader)
     super "View map of the game"
     @map_viewer = map_viewer
+    @reader = reader
   end
 
   def execute(args)
-    @map_viewer.view
+    @reader.read
+    @map_viewer.view(@reader.map)
   end
 end

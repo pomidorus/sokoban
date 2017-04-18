@@ -1,5 +1,5 @@
 class MapViewer
-  def view
-    puts 'view map'
+  def view(map)
+
   end
 end

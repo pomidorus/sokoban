@@ -4,7 +4,7 @@ class ShowHelp < Command
   attr_accessor :cmds
 
   def initialize
-    super "Shows this help message"
+    super SokobanStrings::HELP_DESCRIPTION
     @cmds = {}
   end
 
