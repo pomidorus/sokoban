@@ -12,6 +12,7 @@ class SokobanReader
 
     set_map_size(f.readline.strip.split)
 
+    @map.objects = []
     (1..@map.height).each do |y|
       line = f.readline.chomp
 

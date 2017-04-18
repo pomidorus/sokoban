@@ -5,6 +5,13 @@ class Position
     @x, @y = x, y
   end
 
+  def offset(other)
+    @x += other.x
+    @y += other.y
+
+    self
+  end
+
   def hash
     @x.hash + @y.hash
   end

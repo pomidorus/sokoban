@@ -9,6 +9,7 @@ class ViewManPosition < Command
 
   def execute(args)
     @reader.read
+    @man_position_viewer.init_positions
     @man_position_viewer.view(@reader.map)
   end
 end
