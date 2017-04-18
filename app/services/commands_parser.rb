@@ -10,6 +10,8 @@ class CommandsParser
     case @cmd
       when /help/
         SokobanStrings::HELP_CMD
+      when /view map/
+        SokobanStrings::VIEW_MAP_CMD
       else
         'not found'
     end

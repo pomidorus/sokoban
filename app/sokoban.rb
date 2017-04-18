@@ -2,8 +2,14 @@ require_relative 'sokoban_requires'
 
 class Sokoban
   def initialize
+    map_viewer = MapViewer.new
+    show_help_cmd = ShowHelp.new
+
     @cmd_executor = CommandsExecutor.new(NullCommand.new)
-    @cmd_executor.add_command SokobanStrings::HELP_CMD, ShowHelp.new
+    @cmd_executor.add_command SokobanStrings::HELP_CMD, show_help_cmd
+    @cmd_executor.add_command SokobanStrings::VIEW_MAP_CMD, ViewMap.new(map_viewer)
+
+    show_help_cmd.cmds = @cmd_executor.commands
   end
 
   def run
