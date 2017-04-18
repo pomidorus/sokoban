@@ -14,11 +14,15 @@ class SokobanReader
 
     (1..@map.height).each do |y|
       line = f.readline.chomp
+
+      objects = []
       line.each_char.with_index do |char, x|
         object = @map_parser.parse(char)
-        object.position = Position.new(x,y)
-        @map.add_object(object)
+        object.position = Position.new( (x + 1), y)
+        objects << object
       end
+
+      @map.add_object(objects)
     end
 
     f.close
