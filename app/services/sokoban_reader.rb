@@ -20,15 +20,32 @@ class SokobanReader
         object = @map_parser.parse(char)
         object.position = Position.new( (x + 1), y)
         objects << object
+
+        add_map_object(object)
       end
 
-      @map.add_object(objects)
+      @map.objects << objects
     end
 
     f.close
   end
 
   private
+
+  def add_map_object(map_object)
+    case map_object
+      when Crate
+        @map.crates << map_object
+      when Man
+        @map.man = map_object
+      when Storage
+        @map.storages << map_object
+      when Wall
+        @map.walls << map_object
+      else
+        nil
+    end
+  end
 
   def set_map_size(array)
     @map.width = array[0].to_i

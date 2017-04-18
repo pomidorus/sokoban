@@ -3,16 +3,19 @@ require_relative 'sokoban_requires'
 class Sokoban
   def initialize
     map_viewer = MapViewer.new
-    show_help_cmd = ShowHelp.new
-    null_cmd = NullCommand.new
+    man_position_viewer = ManPositionViewer.new
     sokoban_map = SokobanMap.new
     map_parser = MapParser.new
     reader = SokobanReader.new('level.txt', sokoban_map, map_parser)
     view_map_cmd = ViewMap.new(map_viewer, reader)
+    show_help_cmd = ShowHelp.new
+    man_position_cmd = ViewManPosition.new(man_position_viewer, reader)
+    null_cmd = NullCommand.new
 
     @cmd_executor = CommandsExecutor.new(null_cmd)
     @cmd_executor.add_command SokobanStrings::HELP_CMD, show_help_cmd
     @cmd_executor.add_command SokobanStrings::VIEW_MAP_CMD, view_map_cmd
+    @cmd_executor.add_command SokobanStrings::MAN_POSITION_CMD, man_position_cmd
 
     show_help_cmd.cmds = @cmd_executor.commands
   end
