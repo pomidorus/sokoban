@@ -4,11 +4,15 @@ class Sokoban
   def initialize
     map_viewer = MapViewer.new
     show_help_cmd = ShowHelp.new
-    reader = SokobanReader.new('level.txt', SokobanMap.new)
+    null_cmd = NullCommand.new
+    sokoban_map = SokobanMap.new
+    map_parser = MapParser.new
+    reader = SokobanReader.new('level.txt', sokoban_map, map_parser)
+    view_map_cmd = ViewMap.new(map_viewer, reader)
 
-    @cmd_executor = CommandsExecutor.new(NullCommand.new)
+    @cmd_executor = CommandsExecutor.new(null_cmd)
     @cmd_executor.add_command SokobanStrings::HELP_CMD, show_help_cmd
-    @cmd_executor.add_command SokobanStrings::VIEW_MAP_CMD, ViewMap.new(map_viewer, reader)
+    @cmd_executor.add_command SokobanStrings::VIEW_MAP_CMD, view_map_cmd
 
     show_help_cmd.cmds = @cmd_executor.commands
   end
