@@ -16,15 +16,18 @@ class ManPositionViewer
   def view(map)
     @positions.map! {|p| p.offset(map.man.position)}
 
-    map.objects.each do |row|
-      draw = row.map {|e| e.draw if contain_position?(e.position)}
-      puts draw.compact.join if draw.any?
+    draw = []
+    @positions.each do |position|
+      map.objects.each do |object|
+        if object.position == position
+          draw << object.draw
+          break
+        end
+      end
+      if draw.count == 3
+        puts draw.join
+        draw = []
+      end
     end
-  end
-
-  private
-
-  def contain_position?(position)
-    @positions.include?(position)
   end
 end

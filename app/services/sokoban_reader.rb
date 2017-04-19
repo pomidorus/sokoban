@@ -1,32 +1,36 @@
 class SokobanReader
   attr_reader :map
 
-  def initialize(file_name, map, map_parser)
-    @file_name = file_name
+  def initialize(map, map_parser)
     @map = map
     @map_parser = map_parser
   end
 
   def read
-    f = File.open(@file_name, 'r')
+    f = File.open('game_stats.txt', 'r')
+    line = f.readline.chomp
+    @map.step = line.to_i
+    f.close
+
+    f = File.open("level_#{@map.step}.txt", 'r')
 
     set_map_size(f.readline.strip.split)
 
     @map.objects = []
+    @map.init_objects
+
     (1..@map.height).each do |y|
       line = f.readline.chomp
-
-      objects = []
       line.each_char.with_index do |char, x|
         object = @map_parser.parse(char)
         object.position = Position.new( (x + 1), y)
-        objects << object
+        @map.objects << object
 
         add_map_object(object)
       end
-
-      @map.objects << objects
     end
+
+    @map.init_positions
 
     f.close
   end

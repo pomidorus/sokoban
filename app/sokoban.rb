@@ -2,12 +2,12 @@ require_relative 'sokoban_requires'
 
 class Sokoban
   def initialize
+    sokoban_map = SokobanMap.new
     man_position_mover = ManPositionMover.new
     map_viewer = MapViewer.new
     man_position_viewer = ManPositionViewer.new
-    sokoban_map = SokobanMap.new
     map_parser = MapParser.new
-    reader = SokobanReader.new('level.txt', sokoban_map, map_parser)
+    reader = SokobanReader.new(sokoban_map, map_parser)
     view_map_cmd = ViewMap.new(map_viewer, reader)
     show_help_cmd = ShowHelp.new
     man_position_cmd = ViewManPosition.new(man_position_viewer, reader)
