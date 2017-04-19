@@ -3,15 +3,21 @@ require_relative 'sokoban_requires'
 class Sokoban
   def initialize
     sokoban_map = SokobanMap.new
+
     man_position_mover = ManPositionMover.new
-    map_viewer = MapViewer.new
     man_position_viewer = ManPositionViewer.new
+    map_viewer = MapViewer.new
     map_parser = MapParser.new
-    reader = SokobanReader.new(sokoban_map, map_parser)
-    view_map_cmd = ViewMap.new(map_viewer, reader)
+    map_reader = SokobanReader.new(sokoban_map, map_parser)
+
     show_help_cmd = ShowHelp.new
-    man_position_cmd = ViewManPosition.new(man_position_viewer, reader)
-    man_up_cmd = ManUp.new(man_position_mover, reader)
+    view_map_cmd = ViewMap.new(map_viewer, map_reader)
+    man_position_cmd = ViewManPosition.new(man_position_viewer, map_reader)
+    man_up_cmd = ManUp.new(man_position_mover, map_reader)
+    man_down_cmd = ManDown.new(man_position_mover, map_reader)
+    man_left_cmd = ManLeft.new(man_position_mover, map_reader)
+    man_right_cmd = ManRight.new(man_position_mover, map_reader)
+
     null_cmd = NullCommand.new
 
     @cmd_executor = CommandsExecutor.new(null_cmd)
@@ -19,6 +25,9 @@ class Sokoban
     @cmd_executor.add_command SokobanStrings::VIEW_MAP_CMD, view_map_cmd
     @cmd_executor.add_command SokobanStrings::MAN_POSITION_CMD, man_position_cmd
     @cmd_executor.add_command SokobanStrings::MAN_UP_CMD, man_up_cmd
+    @cmd_executor.add_command SokobanStrings::MAN_DOWN_CMD, man_down_cmd
+    @cmd_executor.add_command SokobanStrings::MAN_LEFT_CMD, man_left_cmd
+    @cmd_executor.add_command SokobanStrings::MAN_RIGHT_CMD, man_right_cmd
 
     show_help_cmd.cmds = @cmd_executor.commands
   end

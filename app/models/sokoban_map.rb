@@ -7,16 +7,15 @@ class SokobanMap
     @height = 0
     @step = 0
 
-    #only static
-    @objects = []
+    init_objects
+  end
 
-    #dinamyc
-    @crates = []
-    @man = nil
-
-    # static
+  def init_objects
     @walls = []
+    @crates = []
     @storages = []
+    @floors = []
+    @man = nil
     @positions = []
   end
 
@@ -49,15 +48,6 @@ class SokobanMap
     end
 
     f.close
-  end
-
-  def init_objects
-    @walls = []
-    @crates = []
-    @storages = []
-    @floors = []
-    @man = nil
-    @positions = []
   end
 
   def init_positions
