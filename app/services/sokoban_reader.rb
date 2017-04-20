@@ -7,10 +7,7 @@ class SokobanReader
   end
 
   def read
-    f = File.open('game_stats.txt', 'r')
-    line = f.readline.chomp
-    @map.step = line.to_i
-    f.close
+    read_step
 
     f = File.open("level_#{@map.step}.txt", 'r')
 
@@ -36,6 +33,13 @@ class SokobanReader
   end
 
   private
+
+  def read_step
+    f = File.open('game_stats.txt', 'r')
+    line = f.readline.chomp
+    @map.step = line.to_i
+    f.close
+  end
 
   def add_map_object(map_object)
     case map_object

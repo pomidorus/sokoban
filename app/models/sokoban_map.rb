@@ -19,10 +19,22 @@ class SokobanMap
     @positions = []
   end
 
-  def update_man_position(overlap, open_floor)
+  def update_crate_position(crate, old_crate, overlap)
     @objects.delete(overlap)
+    @objects.delete(old_crate)
+
+    @objects << crate
+  end
+
+  def update_man_position(man, overlap)
+    open_floor = OpenFloor.new
+    open_floor.position = @man.position
+
+    @objects.delete(overlap) unless overlap.nil?
+    @objects.delete(@man)
+
     @objects << open_floor
-    @objects << @man
+    @objects << man
     @step += 1
   end
 
