@@ -80,6 +80,37 @@ Man moved left
     #######
 ````
 
+Let's move crate
+
+````
+> view map
+    #####
+    #   #
+    #o  #
+  ###  o##
+  #  o o #
+### # ## #   ######
+#   # ## #####  ..#
+# o  o@         ..#
+##### ### # ##  ..#
+    #     #########
+    #######
+> man left
+Man moved left and crate moved left
+> view map
+    #####
+    #   #
+    #o  #
+  ###  o##
+  #  o o #
+### # ## #   ######
+#   # ## #####  ..#
+# o o@          ..#
+##### ### # ##  ..#
+    #     #########
+    #######
+````
+
 Let's type unknown command
 
 ````
